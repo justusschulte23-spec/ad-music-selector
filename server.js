@@ -47,7 +47,7 @@ app.post("/select-music", async (req, res) => {
       const label = `Track ${i + 1}: ${t.name || "?"} (${Math.round(t.duration || 0)}s)`;
       if (!url) return { label, audio: null };
       try {
-        const r = await fetch(url, { signal: AbortSignal.timeout(12000) });
+        const r = await fetch(url, { signal: AbortSignal.timeout(60000) });
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const buf = Buffer.from(await r.arrayBuffer());
         console.log(`  [dl] Track ${i + 1} OK — ${buf.length} bytes`);
